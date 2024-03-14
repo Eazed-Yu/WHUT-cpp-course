@@ -9,7 +9,7 @@ typedef struct {
     union id {
         int library_id;
         char isbn[100];
-    };
+    } u;
     
 } Book;
 
@@ -18,7 +18,7 @@ typedef enum {Mon, Tue, Wed, Thu, Fri, Sat, Sun} Weekday;
 typedef enum {Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec} Month;
 
 typedef struct {
-    unsigned int yeat;
+    unsigned int year;
     Month month;
     Weekday weekday;
 } Date;
