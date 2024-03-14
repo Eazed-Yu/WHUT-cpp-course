@@ -138,17 +138,19 @@ int main() {
     cout << sizeof (ar1) << endl;
     
     /* <33> */
+    cout << "请输入字符" << endl;
     char str1[100];
     cin >> str1;
     
     /* <34> */
+    cout << "请输入字符" << endl;
     string str2;
     cin >> str2;
     
     char ch2;
     ch2 = getchar();
     
-    
+    /* <35> */
     // 打开文件info.txt，并写入myName变量的内容
     ofstream outFile("info.txt");
     if (outFile.is_open()) {
@@ -163,10 +165,11 @@ int main() {
     string line;
     if (inFile.is_open()) {
         while (getline(inFile, line)) {
-            cout << line << endl;
+            cout << "你的名字是：" << line << endl;
         }
         inFile.close(); // 关闭文件
     } else {
         cout << "无法打开文件info.txt进行读取" << endl;
     }
+    system("pause");
 }
