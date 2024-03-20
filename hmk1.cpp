@@ -142,7 +142,7 @@ int main() {
     char str1[100];
     cin >> str1;
     
-    /* <34> */
+    /* <35> */
     cout << "请输入字符" << endl;
     string str2;
     cin >> str2;
@@ -150,7 +150,7 @@ int main() {
     char ch2;
     ch2 = getchar();
     
-    /* <35> */
+    /* <36> */
     // 打开文件info.txt，并写入myName变量的内容
     ofstream outFile("info.txt");
     if (outFile.is_open()) {
@@ -172,4 +172,7 @@ int main() {
         cout << "无法打开文件info.txt进行读取" << endl;
     }
     system("pause");
+    
+    /* <37> */
+    
 }
