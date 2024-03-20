@@ -172,7 +172,39 @@ int main() {
         cout << "无法打开文件info.txt进行读取" << endl;
     }
     system("pause");
+    get_my_name();
+
+    /* <39> */
+    char *str3 = "hello";
+    reverse_string(str3);
+
+    /* <40> */
+    int a1 = 1;
+    int b1 = 2;
+    int c1 = max(a1, b1);
+
+    /* <41> */
+    int arr1[5] = {1, 2, 3, 4, 5};
+    int c2 = find_max_iterative(arr1, 5);
+
+    /* <42> */
+    int arr2[5] = {1, 2, 3, 4, 5};
+    int d1 = find_max(arr2, 5);
     
-    /* <37> */
+    /* <43> */
+    int n1 = sum_recursive(10);
     
+    /* <44> */
+    int n2 = sum_while(10);
+    
+    /* <45> */
+    int n3 = sum_for(10);
+    
+    /* <48> */
+    grades(90);
+    
+    /* <49> */
+    nine_roots(5);
+
+    /* <50> */
 }
