@@ -1,0 +1,1 @@
+whut CppCourse task 1
