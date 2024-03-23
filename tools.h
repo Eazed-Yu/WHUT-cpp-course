@@ -25,7 +25,7 @@ typedef struct
 // 声明一个枚举类型  Weekday
 typedef enum
 {
-    Mon,
+    Mon = 1,
     Tue,
     Wed,
     Thu,
@@ -38,7 +38,7 @@ typedef enum
 // 声明一个枚举类型  Month
 typedef enum
 {
-    Jan,
+    Jan = 1,
     Feb,
     Mar,
     Apr,
