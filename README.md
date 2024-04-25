@@ -1,1 +1,1 @@
-whut CppCourse task 1
+WHUT 面对对象程序设计 2024 作业
