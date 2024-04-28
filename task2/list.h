@@ -1,3 +1,7 @@
+#ifndef LIST_H
+#define LIST_H
+
+
 /**
  * 使用Node 类描述双向链表的组成节点，该类应包含如下数据成员：
  * data : 用于保存当前节点中的整型数据
@@ -109,3 +113,4 @@ public:
 
 };
 
+#endif
