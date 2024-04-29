@@ -24,6 +24,12 @@ int main() {
     int n;
     arrStack - n;
     arrStack.print();
-    std::cout << n;
+    ListStack listStack;
+    listStack.push(10);
+    listStack.push(10);
+    listStack.push(10);
+    listStack.push(10);
+    listStack.push(10);
+    std::cout << listStack;
     system("pause");
 }

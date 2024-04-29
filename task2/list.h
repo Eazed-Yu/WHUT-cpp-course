@@ -1,6 +1,7 @@
 #ifndef LIST_H
 #define LIST_H
 
+#include <iostream>
 
 /**
  * 使用Node 类描述双向链表的组成节点，该类应包含如下数据成员：
@@ -8,7 +9,6 @@
  * prev : 指向链表中的前置邻接节点（左节点）的指针，如果当前节点没有前置邻接节点，则该数据成员应为空值；
  * next : 指向链表中的后置邻接节点（右节点）的指针，如果当前节点没有后置邻接节点，则该数据成员应为空值；
  */
-#include <iostream>
 struct Node {
     int data;
     Node *prev;
@@ -16,9 +16,7 @@ struct Node {
 };
 
 
-/**
- * @brief 双向链表类，用于管理整数类型的数据
- */
+// Task2: 实现双向链表（doubly-linked list）
 class List {
 private:
     Node *head; ///< 指向链表头部的指针
@@ -46,7 +44,6 @@ public:
 
     Node *getHead() { return this->head; }
     Node *getTail() { return this->tail; }
-    int getLen() { return len; }
 
     /**
      * @brief 向链表后方添加一个节点
@@ -71,11 +68,18 @@ public:
      */
     bool delete_left(int &n);
 
+    /**
+     * @brief 用于从双向链表上删除其尾节点（最右节点），并将该节点中的数据保存到参数n
+     * 
+     * @param n 保存到参数n
+     * @return true 操作成功
+     * @return false 链表为空
+     */
     bool delete_right(int &n);
     // 获取链表长度
-    int length();
+    int length() const { return this->len; }
     // 打印链表
-    void print();
+    void print() const;
     // 重载"<<"运算符
     friend std::ostream& operator<<(std::ostream &os, const List &lis);
     // 重载"<<"运算符

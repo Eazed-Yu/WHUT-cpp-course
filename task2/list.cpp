@@ -80,13 +80,8 @@ bool List::delete_right(int &n) {
     return true;
 }
 
-// 返回链表长度
-int List::length() {
-    return len;
-}
-
 // 打印链表内容
-void List::print() {
+void List::print() const{
     Node *current = head;
     std::cout << "[";
     while (current != nullptr) {
