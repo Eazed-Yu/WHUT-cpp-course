@@ -3,10 +3,10 @@
 
 
 bool ArrQueue::enqueue (int n) {
-    if (is_full) {
+    if (size == ARR_MAX) {
         return false;
     }
-    if (is_empty) {
+    if (size == 0) {
         this->front = 0;
         this->end = 0;
     }
@@ -17,7 +17,7 @@ bool ArrQueue::enqueue (int n) {
 }
 
 bool ArrQueue::dequeue (int &n) {
-    if (is_empty) {
+    if (size == 0) {
         return false;
     }
     n = this->arr[front];

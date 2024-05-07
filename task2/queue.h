@@ -1,5 +1,8 @@
-// Task5: 基于循环数组实现数据队列（ArrQueue）功能
+#ifndef QUEUE_H
+#define QUEUE_H
+#include <iostream>
 
+// Task5: 基于循环数组实现数据队列（ArrQueue）功能
 class ArrQueue
 {
 private:
@@ -70,3 +73,4 @@ public:
     friend std::ostream & operator<<(std::ostream &os, const ArrQueue *q);
 };
 
+#endif
