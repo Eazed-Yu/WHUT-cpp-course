@@ -24,6 +24,7 @@ private:
     int len;    ///< 链表中的节点数量
 
 public:
+
     /**
      * @brief 默认构造函数，初始化一个空的链表
      */
@@ -76,12 +77,16 @@ public:
      * @return false 链表为空
      */
     bool delete_right(int &n);
+
     // 获取链表长度
     int length() const { return this->len; }
+
     // 打印链表
     void print() const;
+
     // 重载"<<"运算符
     friend std::ostream& operator<<(std::ostream &os, const List &lis);
+    
     // 重载"<<"运算符
     friend std::ostream& operator<<(std::ostream &os, const List *lis);
 

@@ -99,7 +99,6 @@ std::ostream &operator<< (std::ostream &os, const ListStack &lstk) {
     return os;
 }
 
-std::ostream &
-operator<< (std::ostream &os, const ListStack *lstk) {
+std::ostream &operator<< (std::ostream &os, const ListStack *lstk) {
     return os << *lstk;
 }

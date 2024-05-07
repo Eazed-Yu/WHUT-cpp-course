@@ -1,6 +1,6 @@
 /*
-`g++ -o driver.exe list.cpp stack.cpp queue.cpp driver.cpp`
-`./driver.exe`
+g++ -o driver.exe list.cpp stack.cpp queue.cpp driver.cpp
+./driver.exe
 */
 
 
