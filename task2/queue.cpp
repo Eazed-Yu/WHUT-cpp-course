@@ -58,3 +58,43 @@ std::ostream & operator<< (std::ostream &os, const ArrQueue &q) {
 std::ostream &operator<< (std::ostream &os, const ArrQueue *q) {
     return os << *q;
 }
+
+bool ListQueue::enqueue(int n) {
+    lis.append(n);
+    size++;
+    return true;
+}
+
+bool ListQueue::dequeue(int &n) {
+    if (is_empty()) {
+        return false;
+    }
+    lis.delete_left(n); // 删除链表头部的元素
+    size--;
+    return true;
+}
+
+void ListQueue::print(void) const {
+    lis.print(); // 打印链表内容
+}
+
+
+ListQueue &ListQueue::operator+(int n) {
+    this->enqueue(n);
+    return *this;
+}
+
+ListQueue &ListQueue::operator-(int &n) {
+    this->dequeue(n);
+    return *this;
+}
+
+
+std::ostream &operator<<(std::ostream &os, const ListQueue &q) {
+    q.print();
+    return os;
+}
+
+std::ostream &operator<<(std::ostream &os, const ListQueue *q) {
+    return os << *q;
+}
