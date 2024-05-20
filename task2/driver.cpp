@@ -8,71 +8,79 @@ g++ -o driver.exe list.cpp stack.cpp queue.cpp driver.cpp
 #include "queue.h"
 #include "stack.h"
 
-using namespace std;
 
 int main() {
   // 使用utf-8
   system("chcp 65001 > nul");
   // 测试 List 类
-  List list;                                          // 默认构造函数
-  cout << "当前链表长度: " << list.length() << endl;  // 输出链表长度
-  list.append(10);                       // 在链表尾部添加 10
-  list.prepend(20);                      // 在链表头部添加 20
-  list.append(30);                       // 在链表尾部添加 30
-  cout << "链表内容: " << list << endl;  // 打印链表内容
-  int x;
-  list.delete_left(x);  // 删除链表头部元素
-  cout << "删除头部元素: " << x << " 链表内容: " << list << endl;
-  list.delete_right(x);  // 删除链表尾部元素
-  cout << "删除尾部元素: " << x << " 链表内容: " << list << endl;
+  std::cout << "测试 List 类:" << std::endl;
+  int arr[] = {1, 2, 3, 4, 5};
+  List list(arr, 5);
+  std::cout << "初始链表: ";
+  list.print();
 
-  // 测试 ArrStack
-  ArrStack as;                                          // 默认构造函数
-  cout << "当前数组栈大小: " << as.get_size() << endl;  // 输出栈大小
-  as.push(1);                                           // 压入 1
-  as + 3;                                               // 压入 3
-  cout << "当前数组栈大小: " << as.get_size() << endl;  // 输出栈大小
-  int y, z;
-  as.pop(x);  // 弹出栈顶元素
-  as.pop(y);  // 弹出栈顶元素
-  cout << "x = " << x << " y = " << y << endl;
-  as + 99 + 100 + 101 - z;  // 测试重载的 + 和 -
-  cout << as << endl;       // 测试重载的 <<
+  list.append(6);
+  list.prepend(0);
+  std::cout << "添加元素后: ";
+  list.print();
 
-  // 测试 ListStack
-  ListStack ls;                                         // 默认构造函数
-  cout << "当前链表栈大小: " << ls.get_size() << endl;  // 输出栈大小
-  ls.push(2);                                           // 压入 2
-  ls + 4;                                               // 压入 4
-  cout << "当前链表栈大小: " << ls.get_size() << endl;  // 输出栈大小
-  ls.pop(x);                                            // 弹出栈顶元素
-  ls.pop(y);                                            // 弹出栈顶元素
-  cout << "x = " << x << " y = " << y << endl;
-  ls + 101 + 102 + 103 - z;  // 测试重载的 + 和 -
-  cout << ls << endl;        // 测试重载的 <<
+  int value;
+  list.delete_left(value);
+  std::cout << "删除头部元素: " << value << std::endl;
+  list.print();
 
-  // 测试 ArrQueue
-  ArrQueue aq;                                            // 默认构造函数
-  cout << "当前数组队列大小: " << aq.get_size() << endl;  // 输出队列大小
-  aq.enqueue(10);                                         // 入队 10
-  aq + 20 + 30;                                           // 入队 20 和 30
-  cout << "当前数组队列大小: " << aq.get_size() << endl;  // 输出队列大小
-  aq.dequeue(x);                                          // 出队
-  aq.dequeue(y);                                          // 出队
-  cout << "x = " << x << " y = " << y << endl;
-  aq + 40 + 50 - z;    // 测试重载的 + 和 -
-  cout << aq << endl;  // 测试重载的 <<
+  list.delete_right(value);
+  std::cout << "删除尾部元素: " << value << std::endl;
+  list.print();
 
-  // 测试 ListQueue
-  ListQueue lq;                                           // 默认构造函数
-  cout << "当前链表队列大小: " << lq.get_size() << endl;  // 输出队列大小
-  lq.enqueue(100);                                        // 入队 100
-  lq + 200 + 300;                                         // 入队 200 和 300
-  cout << "当前链表队列大小: " << lq.get_size() << endl;  // 输出队列大小
-  lq.dequeue(x);                                          // 出队
-  lq.dequeue(y);                                          // 出队
-  cout << "x = " << x << " y = " << y << endl;
-  lq + 400 + 500 - z;  // 测试重载的 + 和 -
-  cout << lq << endl;  // 测试重载的 <<
+  std::cout << "链表长度: " << list.length() << std::endl;
+
+  // 测试 ArrStack 类
+  std::cout << "测试 ArrStack 类:" << std::endl;
+  ArrStack arrStack;
+  arrStack.push(1);
+  arrStack.push(2);
+  arrStack + 3 + 4 + 5;
+  std::cout << "当前栈: " << arrStack << std::endl;
+
+  arrStack.pop(value);
+  std::cout << "弹出栈顶元素: " << value << std::endl;
+  std::cout << "弹出后栈: " << arrStack << std::endl;
+
+  // 测试 ListStack 类
+  std::cout << "测试 ListStack 类:" << std::endl;
+  ListStack listStack;
+  listStack.push(10);
+  listStack.push(20);
+  listStack + 30 + 40 + 50;
+  std::cout << "当前栈: " << listStack << std::endl;
+
+  listStack.pop(value);
+  std::cout << "弹出栈顶元素: " << value << std::endl;
+  std::cout << "弹出后栈: " << listStack << std::endl;
+
+  // 测试 ArrQueue 类
+  std::cout << "测试 ArrQueue 类:" << std::endl;
+  ArrQueue arrQueue;
+  arrQueue.enqueue(1);
+  arrQueue.enqueue(2);
+  arrQueue + 3 + 4 + 5;
+  std::cout << "当前队列: " << arrQueue << std::endl;
+
+  arrQueue.dequeue(value);
+  std::cout << "出队列元素: " << value << std::endl;
+  std::cout << "出队后队列: " << arrQueue << std::endl;
+
+  // 测试 ListQueue 类
+  std::cout << "测试 ListQueue 类:" << std::endl;
+  ListQueue listQueue;
+  listQueue.enqueue(100);
+  listQueue.enqueue(200);
+  listQueue + 300 + 400 + 500;
+  std::cout << "当前队列: " << listQueue << std::endl;
+
+  listQueue.dequeue(value);
+  std::cout << "出队列元素: " << value << std::endl;
+  std::cout << "出队后队列: " << listQueue << std::endl;
   system("pause");
 }
