@@ -4,3 +4,4 @@
 */CMakeLists.txt
 *.exe
 cmake-build-debug
+.clang-format
