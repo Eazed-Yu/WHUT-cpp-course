@@ -10,10 +10,10 @@
 
 
 template <typename T>
-class Storage {
+class storage {
 public:
-    virtual ~Storage() = default;
-    Storage(unsigned int size = 0) {
+    virtual ~storage() = default;
+    storage(unsigned int size = 0) {
         this->size = size;
     }
 
@@ -31,7 +31,7 @@ protected:
 };
 
 template <typename T>
-class Stack : public Storage<T> {
+class Stack : public storage<T> {
 public:
     virtual ~Stack() = default;
     virtual bool push(T item) = 0; // 压栈
@@ -50,7 +50,7 @@ private:
 };
 
 template <typename T>
-class List : public Storage<T> {
+class List : public storage<T> {
     virtual ~List() = default;
 
     virtual bool append(T n) = 0;

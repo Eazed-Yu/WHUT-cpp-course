@@ -5,7 +5,7 @@
 #ifndef TASK3_STORAGEIMPL_H
 #define TASK3_STORAGEIMPL_H
 
-#include "Storage.h"
+#include "storage.h"
 
 template<typename T>
 void ArrStack<T>::push(T item) {
