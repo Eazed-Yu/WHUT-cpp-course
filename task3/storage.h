@@ -20,9 +20,9 @@ public:
 
     virtual bool isFull() = 0;
 
-    virtual bool add(T n);
+    virtual bool add(T n) = 0;
 
-    virtual bool remove(T &);
+    virtual bool remove(T &) = 0;
 
     virtual bool find(T item) = 0;
 
@@ -49,11 +49,11 @@ public:
 
     ~SingleList();
 
-    unsigned int getSize() override;
+    unsigned int getSize() override { return size; };
 
-    bool isEmpty() override;
+    bool isEmpty() override { return size == 0; };
 
-    bool isFull() override;
+    bool isFull() override { return size == MAX_SIZE; };
 
     bool add(T n) override { return append(n); };
 
@@ -85,6 +85,54 @@ private:
     Node *tail;
     unsigned int size;
     unsigned int MAX_SIZE = 1000;
+};
+
+template<typename T>
+class DoubleList : public List<T> {
+public:
+
+    DoubleList();
+
+    ~DoubleList();
+
+    unsigned int getSize() override { return size; };
+
+    bool isEmpty() override { return size == 0; };
+
+    bool isFull() override { return size == MAX_SIZE; };
+
+    bool add(T n) override { return append(n); };
+
+    bool remove(T &n) override { return delete_head(n); };
+
+    void print() override;
+
+    bool find(T n) override;
+
+    bool append(T n);
+
+    bool prepend(T n);
+
+    bool delete_head(T &n);
+
+    bool delete_tail(T &n);
+
+
+private:
+    struct Node {
+        Node(const T &data) : data(data), prev(nullptr), next(nullptr) {
+
+        }
+
+        T data;
+        Node *prev;
+        Node *next;
+    };
+
+    Node *head;
+    Node *tail;
+    unsigned int size;
+    static const unsigned int MAX_SIZE = 1000;
 };
 
 
