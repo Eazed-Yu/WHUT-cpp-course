@@ -10,9 +10,9 @@
 
 
 template<typename T>
-class storage {
+class Storage {
 public:
-    virtual ~storage() = default;
+    virtual ~Storage() = default;
 
     virtual unsigned int getSize() = 0;
 
@@ -30,7 +30,7 @@ public:
 };
 
 template<typename T>
-class List : public storage<T> {
+class List : public Storage<T> {
     virtual ~List() = default;
 
     virtual bool append(T n) = 0;
@@ -49,27 +49,27 @@ public:
 
     ~SingleList();
 
-    unsigned int getSize() override { return size; };
+    unsigned int getSize() { return size; };
 
-    bool isEmpty() override { return size == 0; };
+    bool isEmpty() { return size == 0; };
 
-    bool isFull() override { return size == MAX_SIZE; };
+    bool isFull() { return size == MAX_SIZE; };
 
-    bool add(T n) override { return append(n); };
+    bool add(T n) { return append(n); };
 
-    bool remove(T &n) override { return delete_head(n); };
+    bool remove(T &n) { return delete_head(n); };
 
-    void print() override;
+    void print();
 
-    bool find(T n) override;
+    bool find(T n);
 
-    bool append(T n) override;
+    bool append(T n);
 
-    bool prepend(T n) override;
+    bool prepend(T n);
 
-    bool delete_head(T &n) override;
+    bool delete_head(T &n);
 
-    bool delete_tail(T &n) override;
+    bool delete_tail(T &n);
 
 private:
     struct Node {
@@ -95,19 +95,19 @@ public:
 
     ~DoubleList();
 
-    unsigned int getSize() override { return size; };
+    unsigned int getSize() { return size; };
 
-    bool isEmpty() override { return size == 0; };
+    bool isEmpty() { return size == 0; };
 
-    bool isFull() override { return size == MAX_SIZE; };
+    bool isFull() { return size == MAX_SIZE; };
 
-    bool add(T n) override { return append(n); };
+    bool add(T n) { return append(n); };
 
-    bool remove(T &n) override { return delete_head(n); };
+    bool remove(T &n) { return delete_head(n); };
 
-    void print() override;
+    void print();
 
-    bool find(T n) override;
+    bool find(T n);
 
     bool append(T n);
 
@@ -137,7 +137,40 @@ private:
 
 
 template<typename T>
-class Stack : public storage<T> {
+class Array : public Storage<T> {
+public:
+    explicit Array(unsigned int n = 10);
+
+    virtual ~Array();
+
+    unsigned int getSize() { return size; };
+
+    bool isEmpty() { return size == 0; };
+
+    bool isFull() { return size == MAX_SIZE; };
+
+    virtual bool add(T n);
+
+    bool remove(T &n);
+
+    void print();
+
+    bool find(T n);
+
+    virtual const T operator[](int n) const;
+
+    virtual T &operator[](int n);
+
+
+protected:
+    unsigned int size;
+    const unsigned int MAX_SIZE;
+    T *arr;
+};
+
+
+template<typename T>
+class Stack : public Storage<T> {
 public:
     virtual ~Stack() = default;
 

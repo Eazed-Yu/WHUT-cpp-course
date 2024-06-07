@@ -5,7 +5,7 @@
 #ifndef TASK3_STORAGEIMPL_H
 #define TASK3_STORAGEIMPL_H
 
-#include "storage.h"
+#include "Storage.h"
 
 template<typename T>
 SingleList<T>::SingleList() : head(nullptr), tail(nullptr), size(0) {}
@@ -233,6 +233,70 @@ bool DoubleList<T>::delete_tail(T &n) {
         return true;
     }
     return false;
+}
+
+template<typename T>
+Array<T>::Array(unsigned int n) : MAX_SIZE(n) {
+    arr = new T[n]();
+}
+
+template<typename T>
+Array<T>::~Array() {
+    delete arr;
+    arr = nullptr;
+    size = 0;
+}
+
+
+template<typename T>
+bool Array<T>::add(T n) {
+    if (size < MAX_SIZE) {
+        arr[size++] = n;
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+bool Array<T>::remove(T &n) {
+    if (size > 0) {
+        n = arr[--size];
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+void Array<T>::print() {
+    int index = size;
+    std::cout << "[";
+    while (index--) {
+        std::cout << arr[size - index - 1];
+        if (index != 0) {
+            std::cout << ", ";
+        }
+    }
+    std::cout << "]";
+}
+
+template<typename T>
+bool Array<T>::find(T n) {
+    for (auto i: arr) {
+        if (i == n) {
+            return true;
+        }
+    }
+    return false;
+}
+
+template<typename T>
+const T Array<T>::operator[](int n) const {
+    return arr[n];
+}
+
+template<typename T>
+T &Array<T>::operator[](int n) {
+    return arr[n];
 }
 
 #endif //TASK3_STORAGEIMPL_H
