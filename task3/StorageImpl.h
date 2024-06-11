@@ -323,13 +323,13 @@ bool CircleArr<T>::find(T n) {
 }
 
 template<typename T>
-CircleArr<T>::CircleArr(const CircleArr& arr) : Array<T>(arr) {
+CircleArr<T>::CircleArr(const CircleArr &arr) : Array<T>(arr) {
     start = arr.start;
 }
 
 template<typename T>
 Array<T> &CircleArr<T>::operator=(CircleArr<T> &ref) {
-    Array<T>::operator = (ref);
+    Array<T>::operator=(ref);
     start = ref.start;
     return *this;
 }
@@ -405,4 +405,65 @@ bool ArrStack<T>::pop(T &n) {
     }
     return false;
 }
+
+template<typename T>
+ListStack<T>::ListStack() : lis(DoubleList<T>()) {
+
+}
+
+template<typename T>
+unsigned int ListStack<T>::getSize() {
+    return size;
+}
+
+template<typename T>
+bool ListStack<T>::isEmpty() {
+    return size == 0;
+}
+
+template<typename T>
+bool ListStack<T>::isFull() {
+    return size == MAX_SIZE;
+}
+
+template<typename T>
+bool ListStack<T>::add(T n) {
+    return push(n);
+}
+
+template<typename T>
+bool ListStack<T>::remove(T &t) {
+    return pop(t);
+}
+
+template<typename T>
+bool ListStack<T>::find(T item) {
+    return lis.find(item);
+}
+
+template<typename T>
+void ListStack<T>::print() {
+    lis.print();
+}
+
+template<typename T>
+bool ListStack<T>::push(T item) {
+    if (!isFull()) {
+        lis.append(item);
+        size++;
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+bool ListStack<T>::pop(T &n) {
+    bool succeed = lis.delete_tail(n);
+    if (succeed) {
+        --size;
+    }
+    return succeed;
+}
+
+
 #endif //TASK3_STORAGEIMPL_H

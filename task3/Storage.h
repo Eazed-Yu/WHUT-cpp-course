@@ -195,8 +195,6 @@ private:
 };
 
 
-
-
 template<typename T>
 class Stack : public Storage<T> {
 public:
@@ -211,6 +209,7 @@ template<typename T>
 class ArrStack : public Stack<T> {
 public:
     explicit ArrStack(unsigned int n = 10);
+
     ~ArrStack() = default;
 
     unsigned int getSize() override;
@@ -235,6 +234,37 @@ private:
     unsigned int size;
     const unsigned int MAX_SIZE;
     Array<T> arr;
+};
+
+template<typename T>
+class ListStack : public Stack<T> {
+public:
+    ListStack();
+    ~ListStack() override = default;
+
+    unsigned int getSize() override;
+
+    bool isEmpty() override;
+
+    bool isFull() override;
+
+    bool add(T n) override;
+
+    bool remove(T &t) override;
+
+    bool find(T item) override;
+
+    void print() override;
+
+
+    bool push(T item) override;
+
+    bool pop(T &n) override;
+
+private:
+    DoubleList<T> lis;
+    unsigned int size;
+    static const unsigned int MAX_SIZE = 1000;
 };
 
 
