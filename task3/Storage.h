@@ -151,11 +151,11 @@ public:
 
     virtual bool add(T n);
 
-    bool remove(T &n);
+    virtual bool remove(T &n);
 
-    void print();
+    virtual void print();
 
-    bool find(T n);
+    virtual bool find(T n);
 
     virtual const T operator[](int n) const;
 
@@ -170,27 +170,74 @@ protected:
 
 
 template<typename T>
+class CircleArr : public Array<T> {
+public:
+    explicit CircleArr(unsigned int s = 0, unsigned int limit = 10);
+
+    ~CircleArr() = default;
+
+    bool add(T n) override;
+
+    bool remove(T &n) override;
+
+    virtual void print();
+
+    virtual bool find(T n);
+
+    CircleArr(const CircleArr<T> &);
+
+    Array<T> &operator=(CircleArr<T> &ref);
+
+private:
+    unsigned int start;
+
+    unsigned int mapIndex(unsigned int n) const { return (n + start) % this->MAX_SIZE; }
+};
+
+
+
+
+template<typename T>
 class Stack : public Storage<T> {
 public:
     virtual ~Stack() = default;
 
-    virtual bool push(T item) = 0; // 压栈
-    virtual bool pop(T &n) = 0; // 出栈
-    bool add(T n) { push(n); }
+    virtual bool push(T item) = 0;
 
-    bool remove(T &n) { return pop(n); }
+    virtual bool pop(T &n) = 0;
 };
 
 template<typename T>
 class ArrStack : public Stack<T> {
 public:
-    void push(T item) override;
+    explicit ArrStack(unsigned int n = 10);
+    ~ArrStack() = default;
 
-    T pop() override;
+    unsigned int getSize() override;
+
+    bool isEmpty() override;
+
+    bool isFull() override;
+
+    bool add(T n) override;
+
+    bool remove(T &t) override;
+
+    bool find(T item) override;
+
+    void print() override;
+
+    bool push(T item) override;
+
+    bool pop(T &n) override;
 
 private:
-
+    unsigned int size;
+    const unsigned int MAX_SIZE;
+    Array<T> arr;
 };
+
+
 
 
 #endif//TASK3_STORAGE_H

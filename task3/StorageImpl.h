@@ -299,4 +299,110 @@ T &Array<T>::operator[](int n) {
     return arr[n];
 }
 
+template<typename T>
+CircleArr<T>::CircleArr(unsigned int s, unsigned int limit): Array<T>(limit), start(s) {}
+
+template<typename T>
+bool CircleArr<T>::add(T n) {
+    return Array<T>::add(n);
+}
+
+template<typename T>
+bool CircleArr<T>::remove(T &n) {
+    return Array<T>::remove(n);
+}
+
+template<typename T>
+void CircleArr<T>::print() {
+    Array<T>::print();
+}
+
+template<typename T>
+bool CircleArr<T>::find(T n) {
+    return Array<T>::find(n);
+}
+
+template<typename T>
+CircleArr<T>::CircleArr(const CircleArr& arr) : Array<T>(arr) {
+    start = arr.start;
+}
+
+template<typename T>
+Array<T> &CircleArr<T>::operator=(CircleArr<T> &ref) {
+    Array<T>::operator = (ref);
+    start = ref.start;
+    return *this;
+}
+
+template<typename T>
+ArrStack<T>::ArrStack(unsigned int n) : MAX_SIZE(n) {
+    arr = new T[n]();
+}
+
+template<typename T>
+unsigned int ArrStack<T>::getSize() {
+    return size;
+}
+
+template<typename T>
+bool ArrStack<T>::isEmpty() {
+    return size == 0;
+}
+
+template<typename T>
+bool ArrStack<T>::isFull() {
+    return size == MAX_SIZE;
+}
+
+template<typename T>
+bool ArrStack<T>::add(T n) {
+    return push(n);
+}
+
+template<typename T>
+bool ArrStack<T>::remove(T &t) {
+    return pop(t);
+}
+
+template<typename T>
+bool ArrStack<T>::find(T item) {
+    for (signed int i = 0; i < size; ++i) {
+        if (arr[i] == item) {
+            return true;
+        }
+    }
+    return false;
+}
+
+template<typename T>
+void ArrStack<T>::print() {
+    int index = 0;
+    std::cout << "[";
+    while (index < size) {
+        std::cout << this->arr[index];
+        if (index != size - 1) {
+            std::cout << ", ";
+        }
+        index++;
+    }
+    std::cout << "]" << std::endl;
+}
+
+template<typename T>
+bool ArrStack<T>::push(T n) {
+    if (size < MAX_SIZE) {
+        arr[size++] = n;
+        return true;
+    }
+    return false;
+}
+
+template<typename T>
+bool ArrStack<T>::pop(T &n) {
+    if (size > 0) {
+        n = arr[--size];
+        return true;
+    }
+    return false;
+}
 #endif //TASK3_STORAGEIMPL_H
