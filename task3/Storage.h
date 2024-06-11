@@ -27,6 +27,11 @@ public:
     virtual bool find(T item) = 0;
 
     virtual void print() = 0;
+
+    friend std::ostream &operator<<(std::ostream &coutref, Storage &sr) {
+        sr.print();
+        return coutref;
+    }
 };
 
 template<typename T>
@@ -306,6 +311,7 @@ bool DoubleList<T>::append(T n) {
         size++;
         return true;
     }
+    return false;
 }
 
 template<typename T>
@@ -391,7 +397,7 @@ public:
 
 
 protected:
-    unsigned int size;
+    unsigned int size = 0;
     unsigned int MAX_SIZE;
     T *arr;
 };
@@ -459,8 +465,6 @@ template<typename T>
 T &Array<T>::operator[](int n) {
     return arr[n];
 }
-
-
 
 
 template<typename T>
@@ -560,12 +564,13 @@ public:
     bool pop(T &n) override;
 
 private:
-    unsigned int size;
+    unsigned int size = 0;
     unsigned int MAX_SIZE;
     Array<T> arr;
 };
+
 template<typename T>
-ArrStack<T>::ArrStack(unsigned int n) : MAX_SIZE(n), arr(Array<T>(n)){
+ArrStack<T>::ArrStack(unsigned int n) : MAX_SIZE(n), arr(Array<T>(n)) {
 }
 
 template<typename T>
@@ -731,7 +736,8 @@ template<typename T>
 class Queue : public Storage<T> {
 public:
     virtual bool enqueue(T) = 0;
-    virtual bool dequeue(T&) = 0;
+
+    virtual bool dequeue(T &) = 0;
 };
 
 template<typename T>
@@ -814,6 +820,84 @@ bool ArrQ<T>::enqueue(T t) {
 template<typename T>
 bool ArrQ<T>::dequeue(T &t) {
     return arr.remove(t);
+}
+
+template<typename T>
+class ListQ : public Queue<T> {
+public:
+    explicit ListQ();
+
+    ~ListQ() override = default;
+
+    unsigned int getSize() override;
+
+    bool isEmpty() override;
+
+    bool isFull() override;
+
+    bool add(T n) override;
+
+    bool remove(T &t) override;
+
+    bool find(T item) override;
+
+    void print() override;
+
+    bool enqueue(T t) override;
+
+    bool dequeue(T &t) override;
+
+private:
+    DoubleList<T> list;
+};
+
+template<typename T>
+ListQ<T>::ListQ() {
+}
+
+template<typename T>
+unsigned int ListQ<T>::getSize() {
+    return list.getSize();
+}
+
+template<typename T>
+bool ListQ<T>::isEmpty() {
+    return list.isEmpty();
+}
+
+template<typename T>
+bool ListQ<T>::isFull() {
+    return list.isFull();
+}
+
+template<typename T>
+bool ListQ<T>::add(T n) {
+    return list.add(n);
+}
+
+template<typename T>
+bool ListQ<T>::remove(T &t) {
+    return list.remove(t);
+}
+
+template<typename T>
+bool ListQ<T>::find(T item) {
+    return list.find(item);
+}
+
+template<typename T>
+void ListQ<T>::print() {
+    list.print();
+}
+
+template<typename T>
+bool ListQ<T>::enqueue(T t) {
+    return list.add(t);
+}
+
+template<typename T>
+bool ListQ<T>::dequeue(T &t) {
+    return list.delete_head(t);
 }
 
 
